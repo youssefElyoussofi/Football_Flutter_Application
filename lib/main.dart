@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_football/bloc/nav_buttom_bar_cubit.dart';
 import 'package:flutter_application_football/home_page.dart';
 import 'package:flutter_application_football/bloc/league_table_cubit.dart';
 
@@ -14,8 +15,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LeagueCubit(),
+    return MultiBlocProvider(
+     
+      providers: [
+        BlocProvider(create: (context) => LeagueCubit(),),
+        BlocProvider(create: (context) => NavBarCubit(),)
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-class LeagueMatches extends StatelessWidget {
-  const LeagueMatches({super.key});
+class RoundsMatches extends StatelessWidget {
+  const RoundsMatches({super.key});
 
   @override
   Widget build(BuildContext context) {
