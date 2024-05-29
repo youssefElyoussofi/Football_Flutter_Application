@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_application_football/league_table_model.dart';
+import 'package:flutter_application_football/models/league_table_model.dart';
 import 'package:http/http.dart' as http;
 
 class ServiceApi{

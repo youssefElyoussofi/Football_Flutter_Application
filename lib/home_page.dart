@@ -1,45 +1,46 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_application_football/league_table_cubit.dart';
+import 'package:flutter_application_football/bloc/league_table_cubit.dart';
+import 'package:flutter_application_football/screens/league_matches.dart';
+import 'package:flutter_application_football/screens/league_standings.dart';
+import 'package:flutter_application_football/screens/settings.dart';
 
 import 'package:flutter_application_football/widgets/league_table.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+   MyHomePage({super.key});
+
+  final List<Widget> screens = [
+    const LeagueStandings(),
+    const LeagueMatches(),
+    const Settings()
+
+  ];
 
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            const Expanded(
-              flex: 1,
-              child: CategorySelector()),
-            Expanded(
-              flex: 16,
-              child:  BlocBuilder<LeagueCubit,LeagueState>(
-                  buildWhen: (previous, current) => previous.leagueTable != current.leagueTable || previous.isLoading != current.isLoading || previous.error != current.error,
-                  builder: (context, state) {
-                  if(state.isLoading){
-                    return const Center(child: CircularProgressIndicator(),);
-                  }
-                  else if(state.error.isNotEmpty){
-
-                    return Center(child: Text(state.error),);
-
-                  }
-                  return LeagueTable(leagueTeams: state.leagueTable,);
-            
-                  },),
-                ),
-            
-          ],
-        ));
-  }
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Football Leagues',style: TextStyle(fontWeight: FontWeight.bold),),
+        ),
+        bottomNavigationBar: BottomNavigationBar(items: const[
+          BottomNavigationBarItem(
+            label: 'Standings',
+            icon: Icon(Icons.dashboard)),
+          BottomNavigationBarItem(
+            label: 'Matches',
+            icon: Icon(Icons.sports_football)),
+          BottomNavigationBarItem(
+            label: 'Settings',
+            icon: Icon(Icons.settings)),
+        ]),
+        body: const LeagueStandings()
+        
+        );}
 
   
 

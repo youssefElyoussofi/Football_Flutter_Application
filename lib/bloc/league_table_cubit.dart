@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_application_football/league_table_model.dart';
+import 'package:flutter_application_football/models/league_table_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
  class LeagueState extends Equatable{

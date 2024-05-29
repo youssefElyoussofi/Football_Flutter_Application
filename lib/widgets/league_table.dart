@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_football/league_table_model.dart';
+import 'package:flutter_application_football/models/league_table_model.dart';
 
 import 'package:flutter_application_football/widgets/table_header.dart';
 import 'package:flutter_application_football/widgets/table_item.dart';

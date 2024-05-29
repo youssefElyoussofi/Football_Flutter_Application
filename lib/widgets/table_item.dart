@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_football/league_table_model.dart';
+import 'package:flutter_application_football/models/league_table_model.dart';
 
 class TableItem extends StatelessWidget {
   const TableItem({
