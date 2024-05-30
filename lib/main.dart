@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_football/bloc/nav_buttom_bar_cubit.dart';
+import 'package:flutter_application_football/bloc/team_matches_cubit.dart';
 import 'package:flutter_application_football/home_page.dart';
 import 'package:flutter_application_football/bloc/league_table_cubit.dart';
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
      
       providers: [
         BlocProvider(create: (context) => LeagueCubit(),),
-        BlocProvider(create: (context) => NavBarCubit(),)
+        BlocProvider(create: (context) => NavBarCubit(),),
+        BlocProvider(create: (context) => TeamLastMatchesCubit(),)
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

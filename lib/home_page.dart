@@ -12,38 +12,43 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final List<Widget> screens = [
-    const RoundsMatches(),
+     RoundsMatches(),
     const LeagueStandings(),
-     const TeamMatches(),
+    const TeamMatches(),
     const Settings()
   ];
+
+  final List<String> titles = ['Leagues Matches','Table Standings','Team Matches','Settings'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
-            'Football Leagues',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          title: BlocBuilder<NavBarCubit, int>(
+            builder: (context, state) {
+              return Text(
+                titles[state],
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              );
+            },
           ),
         ),
-        bottomNavigationBar: BlocBuilder<NavBarCubit,int>(
+        bottomNavigationBar: BlocBuilder<NavBarCubit, int>(
           builder: (context, state) {
             return BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 onTap: (value) {
                   context.read<NavBarCubit>().updateIndex(value);
                 },
-               
                 currentIndex: state,
                 items: const [
                   BottomNavigationBarItem(
                       label: 'Matches', icon: Icon(Icons.sports_soccer)),
                   BottomNavigationBarItem(
                       label: 'Standings', icon: Icon(Icons.grid_view)),
-                      BottomNavigationBarItem(
-                      label: 'League', icon: Icon(Icons.event_note)),
+                  BottomNavigationBarItem(
+                      label: 'Team', icon: Icon(Icons.event_note)),
                   BottomNavigationBarItem(
                       label: 'Settings', icon: Icon(Icons.settings)),
                 ]);

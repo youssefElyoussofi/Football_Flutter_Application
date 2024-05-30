@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_football/bloc/team_matches_cubit.dart';
+import 'package:flutter_application_football/widgets/team_match.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TeamMatches extends StatelessWidget {
-  const TeamMatches({super.key});
+  const TeamMatches({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        
-        Container(
-          margin: EdgeInsets.all(15),
-          height: 200,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-            
-            image: const DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage('https://www.thesportsdb.com/images/media/event/thumb/k7l14a1712648088.jpg'))
-          ),
-        ),
-        const Text('Liverpool vs Atalanta'),
-      ],
+    return BlocBuilder<TeamLastMatchesCubit, TeamLastMStates>(
+      builder: (context, state) {
+        if(state is InitialState){
+          return const Center(child: Text('No Team Selected\nBack to Standings and click the team you want \nto see Last 5 Matches of the team you choose',textAlign: TextAlign.center,));
+        }
+        else if(state is LoadingState){
+          return const Center(child: CircularProgressIndicator());
+        }else if(state is FailedState){
+          return Center(child:Text(state.error));
+        }else if(state is MatchesTeamState){
+          return Expanded(
+            child: ListView.builder(
+            itemCount: state.matches.length,
+            itemBuilder: (context, index) {
+              return TeamMatchWidget(matchInfo: state.matches[index]);
+            },
+                    ),
+          );
+        }
+        else{
+          
+          return const Center(child: Text(''));
+        }
+      },
     );
   }
 }
+
