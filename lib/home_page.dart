@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_football/bloc/league_table_cubit.dart';
 import 'package:flutter_application_football/bloc/nav_buttom_bar_cubit.dart';
 import 'package:flutter_application_football/screens/rounds_matches.dart';
+import 'package:flutter_application_football/screens/settings.dart';
 import 'package:flutter_application_football/screens/team_matches.dart';
 import 'package:flutter_application_football/screens/league_standings.dart';
-import 'package:flutter_application_football/screens/settings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final List<Widget> screens = [
-     RoundsMatches(),
+     const RoundsMatches(),
     const LeagueStandings(),
     const TeamMatches(),
-    const Settings()
+     const Settings()
   ];
 
   final List<String> titles = ['Leagues Matches','Table Standings','Team Matches','Settings'];
@@ -91,7 +91,7 @@ class CategorySelector extends StatelessWidget {
                 },
                 child: FittedBox(
                   child: AnimatedContainer(
-                    margin: EdgeInsets.only(left: 2),
+                    margin: const EdgeInsets.only(left: 2),
                     decoration: BoxDecoration(
                       color: isSelected
                           ? Colors.deepPurple.withOpacity(0.1)

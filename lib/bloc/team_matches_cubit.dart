@@ -29,7 +29,9 @@ class MatchesTeamState extends TeamLastMStates{
 
 
 class TeamLastMatchesCubit extends  Cubit<TeamLastMStates> {
-  TeamLastMatchesCubit() : super(InitialState());
+  TeamLastMatchesCubit() : super(InitialState()){
+    getTeamLastMatches('133613');
+  }
 
 
   getTeamLastMatches(String teamID) async {

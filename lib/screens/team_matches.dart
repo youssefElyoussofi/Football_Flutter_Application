@@ -13,21 +13,23 @@ class TeamMatches extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TeamLastMatchesCubit, TeamLastMStates>(
       builder: (context, state) {
-        if(state is InitialState){
-          return const Center(child: Text('No Team Selected\nBack to Standings and click the team you want \nto see Last 5 Matches of the team you choose',textAlign: TextAlign.center,));
-        }
-        else if(state is LoadingState){
+         if(state is LoadingState){
           return const Center(child: CircularProgressIndicator());
         }else if(state is FailedState){
           return Center(child:Text(state.error));
         }else if(state is MatchesTeamState){
           return Expanded(
-            child: ListView.builder(
-            itemCount: state.matches.length,
-            itemBuilder: (context, index) {
-              return TeamMatchWidget(matchInfo: state.matches[index]);
-            },
-                    ),
+            child: 
+            ListView(children: [
+              Text('Selected Team ${state.matches.first.matchTitle}'),
+              ...List.generate(state.matches.length, (index) => TeamMatchWidget(matchInfo: state.matches[index]))
+            ],)
+            // ListView.builder(
+            // itemCount: state.matches.length,
+            // itemBuilder: (context, index) {
+            //   return TeamMatchWidget(matchInfo: state.matches[index]);
+            // },
+            //         ),
           );
         }
         else{
